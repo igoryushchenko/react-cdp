@@ -14,8 +14,16 @@
 
         <script type="text/babel">
 
+
+
           // 1. React.CreateElement
-          const hello = React.createElement("h1", null, "Hello from React");
+          const Hello = React.createElement("h1", {  }, "Hello from React");
+
+          class HelloWrapper extends React.Component{
+            render(){
+              return Hello
+            }
+          }
 
           // 2. React.Component
           class HelloComponent extends React.Component {
@@ -41,7 +49,7 @@
             render() {
               return (
                 <React.Fragment>
-                    <hello /> ????? not working
+                    <HelloWrapper />
                     <HelloComponent />
                     <HelloPure />
                     <HelloFunctional value="Hello from React Functional Component" />
