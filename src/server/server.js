@@ -3,13 +3,7 @@ import path from 'path';
 
 const server = express();
 
-server.use('/$', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../dist', 'index.html'));
-});
-
-server.use('/js', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../dist/js', req.path));
-});
+server.use('/', express.static(path.join(__dirname,'../../dist')));
 
 const port = process.env.PORT || 5000;
 server.listen(port);
