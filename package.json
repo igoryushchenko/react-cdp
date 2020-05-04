@@ -2,22 +2,45 @@
   "name": "react-cdp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js --exec \"node --require babel-register\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/server/run.js",
+    "build dev": "eslint . && cross-env NODE_ENV=development webpack",
+    "build prod": "eslint . && cross-env NODE_ENV=production webpack",
+    "dev": "webpack-dev-server",
+    "lint": "eslint .",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/igoryushchenko/react-cdp.git"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router": "^5.1.2",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
-    "nodemon": "^2.0.3"
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/register": "^7.9.0",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
+    "file-loader": "^6.0.0",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "jest": "^25.5.4",
+    "nodemon": "^2.0.3",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
