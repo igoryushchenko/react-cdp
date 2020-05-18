@@ -16,7 +16,7 @@ const Search = ({search}) => {
 
   return (
     <>
-      <h3>FIND YOUR MOVIE</h3>
+      <h3 className="pt-5">FIND YOUR MOVIE</h3>
       <form className="pb-5">
         <div className="form-row">
           <div className="col-md-10">

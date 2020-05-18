@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MovieResultItem = ({ id, title, release_date, poster_path, genres }) => {
+const MovieResultItem = ({ id, title, release_date, poster_path, genres, handleMovieSelect }) => {
   return (
     <div id={id} className="card col-lg-4">
         <img className="card-img-top"
-          alt={`The movie titled: ${title}`}
+          alt={`Picture for movie: ${title}`}
           src={poster_path}
+             onClick={() => handleMovieSelect(id)}
         />
       <div className="card-body">
         <div className="card-title">
@@ -24,7 +25,8 @@ MovieResultItem.propTypes = {
   title: PropTypes.string,
   poster_path: PropTypes.string,
   release_date: PropTypes.string,
-  genres: PropTypes.arrayOf(PropTypes.string)
+  genres: PropTypes.arrayOf(PropTypes.string),
+  handleMovieSelect: PropTypes.func
 };
 
 export default MovieResultItem;
