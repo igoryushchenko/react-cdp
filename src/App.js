@@ -28,10 +28,7 @@ const App = () => {
   return (
     <div className='container'>
       {showMovieDetails ?
-        <>
           <MovieDetails {...currentMovie} setShowMovieDetails = {setShowMovieDetails}/>
-          <SearchResults movieData={searchResults} handleMovieSelect={handleMovieSelect}/>
-        </>
         :
         <>
           <Search search={search}/>
@@ -51,9 +48,9 @@ const App = () => {
               </div>
             </div>
           </div>
-          <SearchResults movieData={searchResults} handleMovieSelect={handleMovieSelect}/>
         </>
       }
+      <SearchResults movieData={searchResults} handleMovieSelect={handleMovieSelect}/>
     </div>
   );
 }
