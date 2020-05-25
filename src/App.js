@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import Search from "./components/search/Search";
-import SearchResults from "./components/search/SearchResults";
+import Search from "./components/Search/Search";
+import SearchResults from "./components/SearchResults/SearchResults";
 import * as movieMock from './data/searchRes.json';
 import * as movieMockEmpty from './data/searchResEmpty.json';
-import MovieDetails from "./components/movies/MovieDetails";
+import MovieDetails from "./components/MovieDetails/MovieDetails";
 
 
 const App = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MovieResultItem from '../movies/MovieResultItem';
-import MovieResultEmpty from '../movies/MovieResultEmpty';
+import MovieResultItem from '../MovieResultItem/MovieResultItem';
+import MovieResultEmpty from '../MovieResultEmpty/MovieResultEmpty';
 
 const SearchResults = ({movieData, handleMovieSelect}) => {
   return (
