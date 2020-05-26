@@ -4,11 +4,13 @@ module.exports = {
         'es6': true,
         'node': true,
         'commonjs': true,
-        'jest': true
+        'jest': true,
+        'cypress/globals': true
     },
     'extends': [
         'eslint:recommended',
-        'plugin:react/recommended'
+        'plugin:react/recommended',
+        'plugin:cypress/recommended'
     ],
     'globals': {
         'Atomics': 'readonly',
@@ -22,9 +24,12 @@ module.exports = {
         'sourceType': 'module'
     },
     'plugins': [
-        'react'
+        'react',
+        'cypress'
     ],
     'rules': {
+        'cypress/no-assigning-return-values': 'warn',
+        'cypress/no-unnecessary-waiting': 'warn'
     },
     'settings': {
         'react': {

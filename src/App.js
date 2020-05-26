@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import Search from "./components/Search/Search";
-import SearchResults from "./components/SearchResults/SearchResults";
+import Search from './components/Search/Search';
+import SearchResults from './components/SearchResults/SearchResults';
 import * as movieMock from './data/searchRes.json';
 import * as movieMockEmpty from './data/searchResEmpty.json';
-import MovieDetails from "./components/MovieDetails/MovieDetails";
+import MovieDetails from './components/MovieDetails/MovieDetails';
 
 
 const App = () => {
@@ -11,6 +11,8 @@ const App = () => {
   const [searchResults, setSearchResults] = useState("");
   const [showMovieDetails, setShowMovieDetails] = useState("");
   const [currentMovie, setCurrentMovie] = useState("");
+
+  console.log(searchResults);
 
   const search = (searchString) => {
     if (searchString === '') {
