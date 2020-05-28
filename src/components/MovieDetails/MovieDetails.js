@@ -15,8 +15,8 @@ const MovieDetails = ({ title, poster_path, vote_average, tagline, release_date,
             <img src={poster_path} className="card-img" alt={`Poster picture for ${title} movie`} />
           </div>
           <div className="col-md-8">
-            <div className="card-body card-details">
-              <div className="card-title card-details-main">
+            <div className="card-details card-body">
+              <div className="card-details-main card-title">
                 <span className="h4 pr-3">{title}</span>
                 <span className="rounded-circle h4">{vote_average}</span>
                 <span id="toggleSearch" className="float-right" onClick={handleSearchClick}><FaSearch /></span>

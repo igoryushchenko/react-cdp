@@ -11,8 +11,8 @@ describe('App component', () => {
     const searchInput = wrapper.find('#movieQuery');
 
     searchInput.instance().value = '';
-    // searchBtn.simulate('click');
-    searchBtn.prop('onChange')();
+    searchBtn.simulate('click');
+
     expect(wrapper.find(MovieResultEmpty)).toHaveLength(1);
 
   });
@@ -22,9 +22,13 @@ describe('App component', () => {
     const searchBtn = wrapper.find('#searchBtn');
     const searchInput = wrapper.find('#movieQuery');
 
-    searchInput.instance().value = 'gwfsdf';
+    searchInput.simulate('change', {
+      target: { value: 'hello' }
+    })
     searchBtn.simulate('click');
-    expect(wrapper.find(MovieResultItem)).toHaveLength(1);
+
+    console.log(wrapper.debug());
+    expect(wrapper.find(MovieResultItem)).toHaveLength(11);
 
   });
 });
