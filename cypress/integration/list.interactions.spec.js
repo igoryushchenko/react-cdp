@@ -1,11 +1,12 @@
 describe('Input form', () => {
+
+  const typedText = 'random';
+
   beforeEach(() => {
     cy.visit('/');
   });
 
   it('Should show movie details card on movie click', () => {
-
-    const typedText = 'random';
 
     cy.get('#movieQuery')
       .type(typedText)
@@ -22,8 +23,6 @@ describe('Input form', () => {
   });
 
   it('Should show search form on search click', () => {
-
-    const typedText = 'random';
 
     cy.get('#movieQuery')
       .type(typedText)
