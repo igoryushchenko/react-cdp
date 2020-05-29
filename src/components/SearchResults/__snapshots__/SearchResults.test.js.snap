@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchResults component should be render two elements 1`] = `ShallowWrapper {}`;
+
+exports[`SearchResults component should render text "No films found" 1`] = `ShallowWrapper {}`;

@@ -29,7 +29,7 @@ const Search = ({search}) => {
             />
           </div>
           <div className="col-md-2">
-            <button type="submit" className="btn btn-primary mb-2" onClick={callSearchFunction}>SEARCH</button>
+            <button id="searchBtn" type="submit" className="btn btn-primary mb-2" onClick={callSearchFunction}>SEARCH</button>
           </div>
         </div>
         <div className="form-row">
