@@ -1,5 +1,4 @@
 import constants from '../../shared/constants';
-import {getMovies} from '../../api';
 
 const defaultState = {
   searchString: '',
@@ -11,9 +10,9 @@ const defaultState = {
   },
   selectedMovie: {},
   showMovieDetails: false
-}
+};
 
-const rootReducer = ({ type, payload }, state = defaultState ) => {
+const rootReducer = (state = defaultState, { type, payload }) => {
   switch (type) {
     case constants.SHOW_MOVIE_DETAILS:
       return {
@@ -30,18 +29,16 @@ const rootReducer = ({ type, payload }, state = defaultState ) => {
       }
 
     case constants.SEARCH_MOVIES:
-      state.searchResults = getMovies(state.searchString);
       return {
         ...state,
-        searchString: payload.searchString
+        searchResults: payload.searchResults
       }
 
     default:
       return state;
   }
-
-}
+};
 
 export {
   rootReducer
-}
+};

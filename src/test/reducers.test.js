@@ -1,16 +1,7 @@
-import React from 'react';
-import {mount} from 'enzyme';
-import App from '../App';
-import MovieResultEmpty from '../components/MovieResultEmpty/MovieResultEmpty';
-import MovieResultItem from "../components/MovieResultItem/MovieResultItem";
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import {Provider} from 'react-redux';
+import {rootReducer} from '../store/reducers';
+import constants from '../shared/constants';
 
-global.fetch = jest.fn(() => Promise.resolve());
-const mockStore = configureMockStore([thunk]);
-
-const filledState = {
+const state = {
   searchString: '',
   searchResults: {
     data: [
@@ -78,11 +69,10 @@ const filledState = {
   showMovieDetails: false
 };
 
-describe('App component', () => {
+describe('root reducer', () => {
+  it('should return the initial state', () => {
 
-  it('Should return empty component on empty search string', () => {
-
-    const store = mockStore({
+    const defaultState = {
       searchString: '',
       searchResults: {
         data: [],
@@ -92,52 +82,46 @@ describe('App component', () => {
       },
       selectedMovie: {},
       showMovieDetails: false
-    });
+    };
 
-    jest.spyOn(React, 'useEffect').mockImplementation(f => f());
-
-    const wrapper = mount(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-
-    // const wrapper = mount(<App />);
-    const searchBtn = wrapper.find('#searchBtn');
-    const searchInput = wrapper.find('#movieQuery');
-
-    searchInput.instance().value = '';
-    searchBtn.simulate('click');
-
-    expect(wrapper.find(MovieResultEmpty)).toHaveLength(1);
+    expect(rootReducer(undefined, {})).toEqual(defaultState);
   });
 
-  it('Should render movie components on non empty search string', () => {
+  it('should return show movie details state', () => {
+    const id = '268896';
+    const action = {
+      type: constants.SHOW_MOVIE_DETAILS,
+      payload: {
+        id
+      }
+    };
 
-    const store = mockStore({
-      searchString: '',
-      searchResults: filledState.searchResults,
-      selectedMovie: {},
-      showMovieDetails: false
-    });
+    const result = rootReducer(state, action);
 
-    jest.spyOn(React, 'useEffect').mockImplementation(f => f());
+    expect(result).toHaveProperty('showMovieDetails', true);
+    expect(result).toHaveProperty('selectedMovie');
+  });
 
-    const wrapper = mount(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-    const searchBtn = wrapper.find('#searchBtn');
-    const searchInput = wrapper.find('#movieQuery');
+  it('should return hide movie details state', () => {
+    const action = {
+      type: constants.HIDE_MOVIE_DETAILS,
+    };
 
-    searchInput.simulate('change', {
-      target: { value: 'hello' }
-    })
-    searchBtn.simulate('click');
+    const result = rootReducer(state, action);
 
-    console.log(wrapper.debug());
-    expect(wrapper.find(MovieResultItem)).toHaveLength(3);
+    expect(result).toHaveProperty('showMovieDetails', false);
+  });
 
+  it('should return search results state', () => {
+    const action = {
+      type: constants.SEARCH_MOVIES,
+      payload: {
+        searchResults: state.searchResults
+      }
+    };
+
+    const result = rootReducer(state, action);
+
+    expect(result).toHaveProperty('searchResults', state.searchResults);
   });
 });

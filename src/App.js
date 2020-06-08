@@ -5,7 +5,6 @@ import MovieDetails from './components/MovieDetails/MovieDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { showMovieDetailsAction } from './store/actions';
 
-
 const App = () => {
 
   const dispatch = useDispatch();
@@ -35,7 +34,7 @@ const App = () => {
                   <label className="custom-control-label" htmlFor="byReleaseDate">RELEASE DATE</label>
                 </div>
                 <div className="custom-control custom-radio custom-control-inline">
-                  <input type="radio" id="byRating" name="sortBy" className="custom-control-input"/>
+                  <input type="radio" id="byRating" name="sortBy" className="custom-control-input" defaultChecked={true}/>
                   <label className="custom-control-label" htmlFor="byRating">RATING</label>
                 </div>
               </div>

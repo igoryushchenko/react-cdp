@@ -6,9 +6,9 @@ const baseUrl = 'https://reactjs-cdp.herokuapp.com/movies';
 
 // https://reactjs-cdp.herokuapp.com/movies?sortBy=vote_average&sortOrder=desc&search=war&searchBy=title
 
-const getMovies = ({searchString = '', sortBy = 'vote_average', searchBy = 'title'}) => {
-  const url = `${baseUrl}?sortBy=${sortBy}&sortOrder=desc&search=${searchString}&searchBy=${searchBy}`;
-  return fetch(url).then(data => data);
+const getMovies = ({searchQuery = '', sortBy = 'vote_average', searchBy = 'title'}) => {
+  const url = `${baseUrl}?sortBy=${sortBy}&sortOrder=desc&search=${searchQuery}&searchBy=${searchBy}`;
+  return fetch(url);
 }
 
 export {

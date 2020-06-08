@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {searchMovies} from '../../store/actions';
+import {getMovies} from '../../api';
 
 const Search = () => {
 
   const dispatch = useDispatch();
 
-  const searchString = useSelector(state => state.searchString);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchString, setSearchString] = useState(searchQuery);
 
-  const callSearchFunction = (e) => {
+  React.useEffect(() => {
+    getMovies({searchQuery})
+      .then(response => response.json())
+      .then(data => {
+        dispatch(searchMovies(data))
+      });
+  }, [searchQuery]);
+
+  const handleSearchInputChange = (e) => {
+    setSearchString(e.target.value);
+  };
+
+  const handleSearchClick = (e) => {
     e.preventDefault();
-    dispatch(searchMovies(e.target.value))
+    setSearchQuery(searchString);
   };
 
   return (
@@ -25,17 +39,17 @@ const Search = () => {
                    className="form-control mb-2"
                    id="movieQuery"
                    value={searchString}
-                   // onChange={handleSearchInputChange}
+                   onChange={handleSearchInputChange}
             />
           </div>
           <div className="col-md-2">
-            <button id="searchBtn" type="submit" className="btn btn-primary mb-2" onClick={callSearchFunction}>SEARCH</button>
+            <button id="searchBtn" type="submit" className="btn btn-primary mb-2" onClick={handleSearchClick}>SEARCH</button>
           </div>
         </div>
         <div className="form-row">
           <p className="pr-2">SEARCH BY:</p>
           <div className="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="byTitle" name="searchBy" className="custom-control-input" />
+            <input type="radio" id="byTitle" name="searchBy" className="custom-control-input" defaultChecked={true}/>
             <label className="custom-control-label" htmlFor="byTitle">TITLE</label>
           </div>
           <div className="custom-control custom-radio custom-control-inline">

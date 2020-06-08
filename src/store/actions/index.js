@@ -11,10 +11,10 @@ const hideMovieDetails = () => ({
     type: constants.HIDE_MOVIE_DETAILS
 })
 
-const searchMovies = (searchString) => ({
+const searchMovies = (searchResults) => ({
     type: constants.SEARCH_MOVIES,
     payload: {
-      searchString
+      searchResults
     }
 });
 
