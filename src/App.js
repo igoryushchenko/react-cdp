@@ -1,37 +1,30 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Search from './components/Search/Search';
 import SearchResults from './components/SearchResults/SearchResults';
-import movieMock from './data/searchRes.json';
-import movieMockEmpty from './data/searchResEmpty.json';
 import MovieDetails from './components/MovieDetails/MovieDetails';
+import { useDispatch, useSelector } from 'react-redux';
+import { showMovieDetailsAction } from './store/actions';
 
 
 const App = () => {
 
-  const [searchResults, setSearchResults] = useState(movieMockEmpty);
-  const [showMovieDetails, setShowMovieDetails] = useState('');
-  const [currentMovie, setCurrentMovie] = useState('');
+  const dispatch = useDispatch();
 
-  const search = (searchString) => {
-    if (searchString === '') {
-      setSearchResults(movieMockEmpty);
-    } else {
-      setSearchResults(movieMock);
-    }
-  }
+  const searchResults = useSelector(state => state.searchResults);
+  const currentMovie = useSelector(state => state.selectedMovie);
+  const showMovieDetails = useSelector(state => state.showMovieDetails);
 
   const handleMovieSelect = (id) => {
-    setCurrentMovie(searchResults.data.find(m => m.id === id));
-    setShowMovieDetails('true');
+    dispatch(showMovieDetailsAction(id));
   }
 
   return (
     <div className='container'>
       {showMovieDetails ?
-          <MovieDetails {...currentMovie} setShowMovieDetails = {setShowMovieDetails}/>
+          <MovieDetails {...currentMovie}/>
         :
         <>
-          <Search search={search}/>
+          <Search/>
           <div className="row">
             <div className="col-sm pb-5">
               <span>{searchResults.total} movie found</span>

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import {useDispatch, useSelector} from 'react-redux';
+import {searchMovies} from '../../store/actions';
 
-const Search = ({search}) => {
+const Search = () => {
 
-  const [searchString, setSearchString] = useState("");
+  const dispatch = useDispatch();
 
-  const handleSearchInputChange = (e) => {
-    setSearchString(e.target.value);
-  };
+  const searchString = useSelector(state => state.searchString);
 
   const callSearchFunction = (e) => {
     e.preventDefault();
-    search(searchString);
+    dispatch(searchMovies(e.target.value))
   };
 
   return (
@@ -25,7 +25,7 @@ const Search = ({search}) => {
                    className="form-control mb-2"
                    id="movieQuery"
                    value={searchString}
-                   onChange={handleSearchInputChange}
+                   // onChange={handleSearchInputChange}
             />
           </div>
           <div className="col-md-2">
