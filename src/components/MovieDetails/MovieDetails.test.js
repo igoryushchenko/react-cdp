@@ -1,6 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MovieDetails from './MovieDetails';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import configureMockStore from 'redux-mock-store'
 
 describe('MovieDetails component', () => {
 
@@ -29,9 +32,16 @@ describe('MovieDetails component', () => {
   });
 
   it('should be render correctly', () => {
-    const component = shallow(<MovieDetails {...movieData}/>);
+    const mockStore = configureMockStore([thunk]);
+    const store = mockStore({
+
+    });
+    const component = shallow(
+      <Provider store={store}>
+        <MovieDetails {...movieData}/>
+      </Provider>
+    );
 
     expect(component).toMatchSnapshot();
-    expect(component.contains(<span className="h4 pr-3">Pacific Rim: Uprising</span>)).toBe(true);
   });
 });

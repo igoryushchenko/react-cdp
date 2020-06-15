@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FaSearch } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { hideMovieDetailsAction } from '../../store/actions';
 
-const MovieDetails = ({ title, poster_path, vote_average, tagline, release_date, overview, runtime, setShowMovieDetails }) => {
+const MovieDetails = ({ title, poster_path, vote_average, tagline, release_date, overview, runtime }) => {
+
+  const dispatch = useDispatch();
 
   const handleSearchClick = () => {
-    setShowMovieDetails('');
+    dispatch(hideMovieDetailsAction());
   }
 
     return (

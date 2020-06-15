@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import {useDispatch} from 'react-redux';
+import {searchMoviesStartAction} from '../../store/actions';
 
-const Search = ({search}) => {
+const Search = () => {
 
-  const [searchString, setSearchString] = useState("");
+  const dispatch = useDispatch();
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchString, setSearchString] = useState(searchQuery);
 
   const handleSearchInputChange = (e) => {
     setSearchString(e.target.value);
   };
 
-  const callSearchFunction = (e) => {
+  const handleSearchClick = (e) => {
     e.preventDefault();
-    search(searchString);
+    setSearchQuery(searchString);
+    dispatch(searchMoviesStartAction(searchString));
   };
 
   return (
@@ -29,13 +35,13 @@ const Search = ({search}) => {
             />
           </div>
           <div className="col-md-2">
-            <button id="searchBtn" type="submit" className="btn btn-primary mb-2" onClick={callSearchFunction}>SEARCH</button>
+            <button id="searchBtn" type="submit" className="btn btn-primary mb-2" onClick={handleSearchClick}>SEARCH</button>
           </div>
         </div>
         <div className="form-row">
           <p className="pr-2">SEARCH BY:</p>
           <div className="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="byTitle" name="searchBy" className="custom-control-input" />
+            <input type="radio" id="byTitle" name="searchBy" className="custom-control-input" defaultChecked={true}/>
             <label className="custom-control-label" htmlFor="byTitle">TITLE</label>
           </div>
           <div className="custom-control custom-radio custom-control-inline">
