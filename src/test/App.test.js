@@ -94,8 +94,6 @@ describe('App component', () => {
       showMovieDetails: false
     });
 
-    jest.spyOn(React, 'useEffect').mockImplementation(f => f());
-
     const wrapper = mount(
       <Provider store={store}>
         <App />
@@ -121,8 +119,6 @@ describe('App component', () => {
       showMovieDetails: false
     });
 
-    jest.spyOn(React, 'useEffect').mockImplementation(f => f());
-
     const wrapper = mount(
       <Provider store={store}>
         <App />
@@ -136,7 +132,6 @@ describe('App component', () => {
     })
     searchBtn.simulate('click');
 
-    console.log(wrapper.debug());
     expect(wrapper.find(MovieResultItem)).toHaveLength(3);
 
   });

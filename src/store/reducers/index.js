@@ -28,7 +28,7 @@ const rootReducer = (state = defaultState, { type, payload }) => {
         selectedMovie: {}
       }
 
-    case constants.SEARCH_MOVIES:
+    case constants.SEARCH_MOVIES_SUCCESS:
       return {
         ...state,
         searchResults: payload.searchResults

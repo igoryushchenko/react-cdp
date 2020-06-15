@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
-import {searchMovies} from '../../store/actions';
-import {getMovies} from '../../api';
+import {searchMoviesStartAction} from '../../store/actions';
 
 const Search = () => {
 
@@ -11,14 +10,6 @@ const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchString, setSearchString] = useState(searchQuery);
 
-  React.useEffect(() => {
-    getMovies({searchQuery})
-      .then(response => response.json())
-      .then(data => {
-        dispatch(searchMovies(data))
-      });
-  }, [searchQuery]);
-
   const handleSearchInputChange = (e) => {
     setSearchString(e.target.value);
   };
@@ -26,6 +17,7 @@ const Search = () => {
   const handleSearchClick = (e) => {
     e.preventDefault();
     setSearchQuery(searchString);
+    dispatch(searchMoviesStartAction(searchString));
   };
 
   return (

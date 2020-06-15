@@ -1,25 +1,37 @@
 import constants from '../../shared/constants';
+import {getMovies} from '../../api';
 
 const showMovieDetailsAction = (id) => ({
     type: constants.SHOW_MOVIE_DETAILS,
     payload: {
       id
     }
-})
+});
 
-const hideMovieDetails = () => ({
+const hideMovieDetailsAction = () => ({
     type: constants.HIDE_MOVIE_DETAILS
-})
+});
 
-const searchMovies = (searchResults) => ({
-    type: constants.SEARCH_MOVIES,
+const searchMoviesSuccessAction = (searchResults) => ({
+    type: constants.SEARCH_MOVIES_SUCCESS,
     payload: {
       searchResults
     }
 });
 
+const searchMoviesStartAction = (searchQuery) => {
+  return dispatch => {
+    return getMovies({searchQuery})
+      .then(response => response.json())
+      .then(data => {
+        dispatch(searchMoviesSuccessAction(data))
+      });
+  };
+};
+
 export {
-  searchMovies,
+  searchMoviesStartAction,
+  searchMoviesSuccessAction,
   showMovieDetailsAction,
-  hideMovieDetails
+  hideMovieDetailsAction,
 }

@@ -114,7 +114,7 @@ describe('root reducer', () => {
 
   it('should return search results state', () => {
     const action = {
-      type: constants.SEARCH_MOVIES,
+      type: constants.SEARCH_MOVIES_SUCCESS,
       payload: {
         searchResults: state.searchResults
       }

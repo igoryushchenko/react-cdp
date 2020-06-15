@@ -1,5 +1,5 @@
 import constants from '../shared/constants';
-import {hideMovieDetails, searchMovies, showMovieDetailsAction} from '../store/actions';
+import {hideMovieDetailsAction, searchMoviesSuccessAction, showMovieDetailsAction} from '../store/actions';
 
 describe('actions', () => {
   it('should create a show movie details action', () => {
@@ -17,7 +17,7 @@ describe('actions', () => {
     const expectedAction = {
       type: constants.HIDE_MOVIE_DETAILS
     };
-    expect(hideMovieDetails()).toEqual(expectedAction);
+    expect(hideMovieDetailsAction()).toEqual(expectedAction);
   });
 
   it('should create a search movies action', () => {
@@ -30,11 +30,11 @@ describe('actions', () => {
     };
 
     const expectedAction = {
-      type: constants.SEARCH_MOVIES,
+      type: constants.SEARCH_MOVIES_SUCCESS,
       payload: {
         searchResults
       }
     };
-    expect(searchMovies(searchResults)).toEqual(expectedAction);
+    expect(searchMoviesSuccessAction(searchResults)).toEqual(expectedAction);
   });
 });
