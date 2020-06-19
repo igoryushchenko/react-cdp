@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import SearchResults from './SearchResults';
-import MovieResultItem from "../MovieResultItem/MovieResultItem";
+import MovieResultItem from '../MovieResultItem/MovieResultItem';
+import * as Redux from 'react-redux';
 
 describe('SearchResults component', () => {
 
@@ -66,6 +67,8 @@ describe('SearchResults component', () => {
   });
 
   it('should be render two component - MovieResultItem', () => {
+    const useDispatchSpy = jest.spyOn(Redux, 'useDispatch');
+    useDispatchSpy.mockImplementation( () => (cb) => (cb));
     const component = mount(<SearchResults movieData={searchResults} />);
     expect(component.find(MovieResultItem).length).toBe(2);
   });

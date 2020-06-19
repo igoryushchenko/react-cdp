@@ -1,7 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {showMovieDetailsAction} from '../../store/actions';
+import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
-const MovieResultItem = ({ id, title, release_date, poster_path, genres, handleMovieSelect }) => {
+const MovieResultItem = ({ id, title, release_date, poster_path, genres }) => {
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleMovieSelect = (id) => {
+    dispatch(showMovieDetailsAction(id));
+    history.push(`/film/${id}`);
+  }
+
   return (
     <div id={id} className="card col-lg-4">
         <img className="card-img-top"

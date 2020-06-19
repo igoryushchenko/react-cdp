@@ -6,6 +6,7 @@ import MovieResultItem from "../components/MovieResultItem/MovieResultItem";
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
+import { BrowserRouter } from "react-router-dom";
 
 global.fetch = jest.fn(() => Promise.resolve());
 const mockStore = configureMockStore([thunk]);
@@ -95,8 +96,11 @@ describe('App component', () => {
     });
 
     const wrapper = mount(
+
       <Provider store={store}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Provider>
     );
 
@@ -121,7 +125,9 @@ describe('App component', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Provider>
     );
     const searchBtn = wrapper.find('#searchBtn');
