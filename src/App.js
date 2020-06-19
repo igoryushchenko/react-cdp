@@ -18,7 +18,6 @@ const App = () => {
     <div className='container'>
       <Switch>
         <Route exact path="/">
-          <>
             <Search/>
             <div className="row">
               <div className="col-sm pb-5">
@@ -37,14 +36,12 @@ const App = () => {
               </div>
             </div>
             <SearchResults movieData={searchResults}/>
-          </>
         </Route>
         <Route path="/film/:id">
           <MovieDetails {...currentMovie}/>
           <SearchResults movieData={searchResults}/>
         </Route>
         <Route path="/search/:searchQuery">
-          <>
             <Search/>
             <div className="row">
               <div className="col-sm pb-5">
@@ -63,7 +60,6 @@ const App = () => {
               </div>
             </div>
             <SearchResults movieData={searchResults}/>
-          </>
         </Route>
         <Route path="*">
           <NotFoundPage />
