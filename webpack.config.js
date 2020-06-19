@@ -12,6 +12,9 @@ module.exports = {
     modules: [path.resolve('./src'), 'node_modules'],
     extensions: ['.js', '.jsx']
   },
+  devServer: {
+    historyApiFallback: true
+  },
   module: {
     rules: [
       {
@@ -46,6 +49,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     filename: 'js/index.js'
   },
   plugins: [

@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import { FaSearch } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { hideMovieDetailsAction } from '../../store/actions';
+import {useHistory} from 'react-router-dom';
 
 const MovieDetails = ({ title, poster_path, vote_average, tagline, release_date, overview, runtime }) => {
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSearchClick = () => {
     dispatch(hideMovieDetailsAction());
+    history.push('/');
   }
 
     return (

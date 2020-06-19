@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import {searchMoviesStartAction} from '../../store/actions';
+import {useHistory, useParams} from 'react-router-dom';
 
 const Search = () => {
 
   const dispatch = useDispatch();
+  const history = useHistory();
+  let { searchQuery } = useParams();
 
-  const [searchQuery, setSearchQuery] = useState("");
+  useEffect(() => {
+    dispatch(searchMoviesStartAction(searchQuery));
+  }, [searchQuery]);
+
   const [searchString, setSearchString] = useState(searchQuery);
 
   const handleSearchInputChange = (e) => {
@@ -16,8 +22,8 @@ const Search = () => {
 
   const handleSearchClick = (e) => {
     e.preventDefault();
-    setSearchQuery(searchString);
     dispatch(searchMoviesStartAction(searchString));
+    history.push(`/search/${searchString}`);
   };
 
   return (
