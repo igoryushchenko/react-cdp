@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MovieResultItem from './MovieResultItem';
+import * as Redux from 'react-redux';
 
 describe('MovieResultItem component', () => {
 
@@ -29,6 +30,8 @@ describe('MovieResultItem component', () => {
   });
 
   it('should be render correctly', () => {
+    const useDispatchSpy = jest.spyOn(Redux, 'useDispatch');
+    useDispatchSpy.mockImplementation( () => (cb) => (cb));
     const component = shallow(<MovieResultItem key={movieData.id} {...movieData}/>);
 
     expect(component).toMatchSnapshot();
