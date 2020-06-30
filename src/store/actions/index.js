@@ -1,5 +1,4 @@
 import constants from '../../shared/constants';
-import {getMovies} from '../../api';
 
 const showMovieDetailsAction = (id) => ({
     type: constants.SHOW_MOVIE_DETAILS,
@@ -19,15 +18,12 @@ const searchMoviesSuccessAction = (searchResults) => ({
     }
 });
 
-const searchMoviesStartAction = (searchQuery) => {
-  return dispatch => {
-    return getMovies({searchQuery})
-      .then(response => response.json())
-      .then(data => {
-        dispatch(searchMoviesSuccessAction(data))
-      });
-  };
-};
+const searchMoviesStartAction = (searchQuery) => ({
+  type: constants.SEARCH_MOVIES_START,
+  payload: {
+    searchQuery
+  }
+});
 
 export {
   searchMoviesStartAction,

@@ -1,23 +1,17 @@
 import { createStore, applyMiddleware } from 'redux';
 // import { createStore } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import thunk from 'redux-thunk';
+
+import createSagaMiddleware, { END } from 'redux-saga';
 
 import { rootReducer } from './reducers';
+import { watchGetMovies } from '../api';
 
-// const middleWare = [thunk];
+const sagaMiddleware = createSagaMiddleware();
 
-// const store = createStore(rootReducer, applyMiddleware(...middleWare));
+const store = createStore(rootReducer, initialState, applyMiddleware(sagaMiddleware));
 
-const persistConfig = {
-  key: 'root',
-  storage,
-};
+sagaMiddleware.run(watchGetMovies);
+store.runSaga = () => sagaMiddleware.run(watchGetMovies);
+store.close = () => store.dispatch(END);
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-const store = createStore(persistedReducer, applyMiddleware(thunk));
-const persistor = persistStore(store)
-
-export { store, persistor };
+export { store };
