@@ -26,7 +26,8 @@ const getMoviesAsync = function* (action) {
   } = action;
   const url = `${baseUrl}?sortBy=${sortBy}&sortOrder=desc&search=${searchQuery}&searchBy=${searchBy}`;
   const response = yield call(fetch, url);
-  yield put(searchMoviesSuccessAction(response.json()))
+  const movies = yield response.json();
+  yield put(searchMoviesSuccessAction(movies))
 }
 
 const watchGetMovies = function* () {

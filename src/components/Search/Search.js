@@ -32,7 +32,7 @@ const Search = () => {
       <form className="pb-5">
         <div className="form-row">
           <div className="col-md-10">
-            <label className="sr-only" htmlFor="inlineFormInputName2">Name</label>
+            <label className="sr-only" htmlFor="movieQuery">Name</label>
             <input type="text"
                    className="form-control mb-2"
                    id="movieQuery"

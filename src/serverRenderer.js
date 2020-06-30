@@ -19,7 +19,7 @@ const renderHTML = (html) => (
     </html>`
 );
 
-const serverRenderer = (req, res) => {
+const serverRenderer = () => (req, res) => {
 
   // This context object contains the results of the render
   const context = {};
