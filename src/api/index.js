@@ -1,6 +1,6 @@
-import { call, put, all, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import {searchMoviesSuccessAction} from '../store/actions';
-import constants from '../../shared/constants';
+import constants from '../shared/constants';
 
 const baseUrl = 'https://reactjs-cdp.herokuapp.com/movies';
 

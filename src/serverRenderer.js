@@ -2,6 +2,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import App from './App';
+import { store } from './store';
+import {Provider} from 'react-redux';
 
 const renderHTML = (html) => (
   `<!DOCTYPE html>
@@ -9,6 +11,7 @@ const renderHTML = (html) => (
         <head>
             <meta charset="utf-8"/>
             <title>React CDP</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         </head>
         <body>
             <div id="root">${html}</div>
@@ -21,25 +24,37 @@ const serverRenderer = (req, res) => {
   // This context object contains the results of the render
   const context = {};
 
-  const app = (
+  const app = () => (
+    <Provider store={store}>
       <App
         context={context}
         location={req.url}
         Router={StaticRouter}
       />
+    </Provider>
   );
 
-  // context.url will contain the URL to redirect to if a <Redirect> was used
-  if (context.url) {
-    res.writeHead(302, {
-      Location: context.url,
-    });
-    res.end();
-    return;
-  }
+  store.runSaga().toPromise().then(() => {
+    const htmlString = renderToString(app());
 
-  const htmlString = renderToString(app);
-  res.send(renderHTML(htmlString));
+    // context.url will contain the URL to redirect to if a <Redirect> was used
+    if (context.url) {
+      res.writeHead(302, {
+        Location: context.url,
+      });
+      res.end();
+      return;
+    }
+
+    const preloadedState = store.getState();
+
+    res.send(renderHTML(htmlString, preloadedState));
+  });
+
+  // Do first render, starts initial actions.
+  renderToString(app());
+  // When the first render is finished, send the END action to redux-saga.
+  store.close();
 };
 
 export { serverRenderer };

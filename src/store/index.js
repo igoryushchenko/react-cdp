@@ -3,7 +3,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import createSagaMiddleware, { END } from 'redux-saga';
 
-import { rootReducer } from './reducers';
+import { rootReducer, defaultState as initialState } from './reducers';
 import { watchGetMovies } from '../api';
 
 const sagaMiddleware = createSagaMiddleware();

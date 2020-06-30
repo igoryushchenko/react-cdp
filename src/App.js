@@ -78,6 +78,10 @@ App.propTypes = {
   context: PropTypes.shape({
     url: PropTypes.string,
   }),
+  store: PropTypes.shape({
+    dispatch: PropTypes.func.isRequired,
+    getState: PropTypes.func.isRequired,
+  }).isRequired,
 };
 App.defaultProps = {
   location: null,
