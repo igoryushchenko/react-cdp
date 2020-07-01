@@ -40,5 +40,6 @@ const rootReducer = (state = defaultState, { type, payload }) => {
 };
 
 export {
-  rootReducer
+  rootReducer,
+  defaultState
 };
