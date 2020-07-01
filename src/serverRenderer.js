@@ -1,9 +1,9 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import App from './App';
-import { store } from './store';
-import {Provider} from 'react-redux';
+import store from './store';
 
 const renderHTML = (html) => (
   `<!DOCTYPE html>
@@ -20,7 +20,6 @@ const renderHTML = (html) => (
 );
 
 const serverRenderer = () => (req, res) => {
-
   // This context object contains the results of the render
   const context = {};
 
@@ -57,4 +56,4 @@ const serverRenderer = () => (req, res) => {
   store.close();
 };
 
-export { serverRenderer };
+export default serverRenderer;

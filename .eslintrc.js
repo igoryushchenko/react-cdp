@@ -8,10 +8,12 @@ module.exports = {
         'cypress/globals': true
     },
     'extends': [
-        'eslint:recommended',
+        'airbnb-base',
         'plugin:react/recommended',
-        'plugin:cypress/recommended'
+        'plugin:cypress/recommended',
+        'plugin:flowtype/recommended'
     ],
+    'parser': 'babel-eslint',
     'globals': {
         'Atomics': 'readonly',
         'SharedArrayBuffer': 'readonly'
@@ -24,12 +26,14 @@ module.exports = {
         'sourceType': 'module'
     },
     'plugins': [
+        'flowtype',
         'react',
         'cypress'
     ],
     'rules': {
         'cypress/no-assigning-return-values': 'warn',
-        'cypress/no-unnecessary-waiting': 'warn'
+        'cypress/no-unnecessary-waiting': 'warn',
+        'camelcase': 'warn'
     },
     'settings': {
         'react': {

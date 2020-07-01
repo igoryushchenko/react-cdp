@@ -1,12 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MovieDetails from './MovieDetails';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import configureMockStore from 'redux-mock-store'
+import configureMockStore from 'redux-mock-store';
+import MovieDetails from './MovieDetails';
 
 describe('MovieDetails component', () => {
-
   let movieData;
 
   beforeAll(() => {
@@ -25,9 +24,9 @@ describe('MovieDetails component', () => {
         'Action',
         'Fantasy',
         'Science Fiction',
-        'Adventure'
+        'Adventure',
       ],
-      runtime: 111
+      runtime: 111,
     };
   });
 
@@ -39,7 +38,7 @@ describe('MovieDetails component', () => {
     const component = shallow(
       <Provider store={store}>
         <MovieDetails {...movieData}/>
-      </Provider>
+      </Provider>,
     );
 
     expect(component).toMatchSnapshot();

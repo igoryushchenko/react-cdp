@@ -1,19 +1,18 @@
 import React from 'react';
-import Search from './components/Search/Search';
-import SearchResults from './components/SearchResults/SearchResults';
-import MovieDetails from './components/MovieDetails/MovieDetails';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Switch,
-  Route
-} from "react-router-dom";
+  Route,
+} from 'react-router-dom';
+import Search from './components/Search/Search';
+import SearchResults from './components/SearchResults/SearchResults';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 const App = ({ Router, location, context }) => {
-
-  const searchResults = useSelector(state => state.searchResults);
-  const currentMovie = useSelector(state => state.selectedMovie);
+  const searchResults = useSelector((state) => state.get('searchResults'));
+  const currentMovie = useSelector((state) => state.get('selectedMovie'));
 
   return (
     <Router location={location} context={context}>
@@ -77,7 +76,7 @@ App.propTypes = {
   location: PropTypes.string,
   context: PropTypes.shape({
     url: PropTypes.string,
-  })
+  }),
 };
 App.defaultProps = {
   location: null,

@@ -1,21 +1,32 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FaSearch } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import { hideMovieDetailsAction } from '../../store/actions';
-import {useHistory} from 'react-router-dom';
+import type { MovieProps } from '../../types/MovieProps';
 
-const MovieDetails = ({ title, poster_path, vote_average, tagline, release_date, overview, runtime }) => {
+const Rounded = styled.span`
+  border-radius: 50%;
+  border: 1px solid gray;
+  padding: 6px;
+  line-height: 1;
+`;
 
+const MovieDetails = ({
+  title, poster_path, vote_average, tagline, release_date, overview, runtime,
+}: MovieProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleSearchClick = () => {
     dispatch(hideMovieDetailsAction());
     history.push('/');
-  }
+  };
 
-    return (
+  return (
       <div className="card mb-3">
         <div className="row no-gutters">
           <div className="col-md-4">
@@ -25,7 +36,7 @@ const MovieDetails = ({ title, poster_path, vote_average, tagline, release_date,
             <div className="card-details card-body">
               <div className="card-details-main card-title">
                 <span className="h4 pr-3">{title}</span>
-                <span className="rounded-circle h4">{vote_average}</span>
+                <Rounded>{vote_average}</Rounded>
                 <span id="toggleSearch" className="float-right" onClick={handleSearchClick}><FaSearch /></span>
               </div>
               <p className="card-text"><small className="text-muted">{tagline}</small></p>
@@ -35,7 +46,7 @@ const MovieDetails = ({ title, poster_path, vote_average, tagline, release_date,
           </div>
         </div>
       </div>
-    );
+  );
 };
 
 MovieDetails.propTypes = {
@@ -46,7 +57,7 @@ MovieDetails.propTypes = {
   release_date: PropTypes.string,
   overview: PropTypes.string,
   runtime: PropTypes.number,
-  setShowMovieDetails: PropTypes.func
-}
+  setShowMovieDetails: PropTypes.func,
+};
 
 export default MovieDetails;

@@ -1,5 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import {searchMoviesSuccessAction} from '../store/actions';
+import { fromJS } from 'immutable';
+import { searchMoviesSuccessAction } from '../store/actions';
 import constants from '../shared/constants';
 
 const baseUrl = 'https://reactjs-cdp.herokuapp.com/movies';
@@ -10,7 +11,7 @@ const baseUrl = 'https://reactjs-cdp.herokuapp.com/movies';
 
 // https://reactjs-cdp.herokuapp.com/movies?sortBy=vote_average&sortOrder=desc&search=war&searchBy=title
 
-const getMovies = ({searchQuery = '', sortBy = 'vote_average', searchBy = 'title'}) => {
+const getMovies = ({ searchQuery = '', sortBy = 'vote_average', searchBy = 'title' }) => {
   const url = `${baseUrl}?sortBy=${sortBy}&sortOrder=desc&search=${searchQuery}&searchBy=${searchBy}`;
   return fetch(url);
 };
@@ -21,21 +22,21 @@ const getMoviesAsync = function* (action) {
     payload: {
       searchQuery = '',
       sortBy = 'vote_average',
-      searchBy = 'title'
-    }
+      searchBy = 'title',
+    },
   } = action;
   const url = `${baseUrl}?sortBy=${sortBy}&sortOrder=desc&search=${searchQuery}&searchBy=${searchBy}`;
   const response = yield call(fetch, url);
   const movies = yield response.json();
-  yield put(searchMoviesSuccessAction(movies))
-}
+  yield put(searchMoviesSuccessAction(fromJS(movies)));
+};
 
 const watchGetMovies = function* () {
   yield takeLatest(constants.SEARCH_MOVIES_START, getMoviesAsync);
-}
+};
 
 export {
   getMovies,
   getMoviesAsync,
-  watchGetMovies
+  watchGetMovies,
 };

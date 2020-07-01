@@ -1,5 +1,4 @@
 describe('Input form', () => {
-
   const typedText = 'random';
 
   beforeEach(() => {
@@ -7,7 +6,6 @@ describe('Input form', () => {
   });
 
   it('Should show movie details card on movie click', () => {
-
     cy.get('#movieQuery')
       .type(typedText)
       .should('have.value', typedText);
@@ -19,11 +17,9 @@ describe('Input form', () => {
     cy.get('div.card-details').within(() => {
       cy.get('div.card-details-main').should('be.visible');
     });
-
   });
 
   it('Should show search form on search click', () => {
-
     cy.get('#movieQuery')
       .type(typedText)
       .should('have.value', typedText);
@@ -41,7 +37,5 @@ describe('Input form', () => {
     cy.contains('FIND YOUR MOVIE');
     cy.contains('SEARCH BY:');
     cy.get('#searchBtn').contains('SEARCH');
-
   });
-
 });

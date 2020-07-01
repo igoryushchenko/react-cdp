@@ -6,6 +6,5 @@ describe('App initialization', () => {
     cy.contains('SEARCH BY:');
     cy.get('#searchBtn').contains('SEARCH');
     cy.contains('h1', 'No films found');
-
-  })
-})
+  });
+});
