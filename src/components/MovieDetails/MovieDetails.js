@@ -4,8 +4,15 @@ import PropTypes from 'prop-types';
 import { FaSearch } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import { hideMovieDetailsAction } from '../../store/actions';
 import type { MovieProps } from '../../types/MovieProps';
+
+const Rounded = styled.span`
+  border-radius: 50%;
+  border: 1px solid gray;
+  padding: 6px;
+`;
 
 const MovieDetails = ({
   title, poster_path, vote_average, tagline, release_date, overview, runtime,
@@ -28,7 +35,7 @@ const MovieDetails = ({
             <div className="card-details card-body">
               <div className="card-details-main card-title">
                 <span className="h4 pr-3">{title}</span>
-                <span className="rounded-circle h4">{vote_average}</span>
+                <Rounded>{vote_average}</Rounded>
                 <span id="toggleSearch" className="float-right" onClick={handleSearchClick}><FaSearch /></span>
               </div>
               <p className="card-text"><small className="text-muted">{tagline}</small></p>
