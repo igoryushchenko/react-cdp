@@ -10,10 +10,10 @@ module.exports = {
   entry: './index.js',
   resolve: {
     modules: [path.resolve('./src'), 'node_modules'],
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -21,16 +21,16 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader'
-          }
-        ]
+            loader: 'html-loader',
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -44,18 +44,18 @@ module.exports = {
         use: [
           'file-loader',
         ],
-      }
-    ]
+      },
+    ],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'js/index.js'
+    filename: 'js/index.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
-      filename: './index.html'
-    })
-  ]
+      filename: './index.html',
+    }),
+  ],
 };

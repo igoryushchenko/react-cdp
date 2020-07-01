@@ -11,4 +11,4 @@ sagaMiddleware.run(watchGetMovies);
 store.runSaga = () => sagaMiddleware.run(watchGetMovies);
 store.close = () => store.dispatch(END);
 
-export { store };
+export default store;

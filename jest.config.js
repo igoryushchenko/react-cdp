@@ -1,6 +1,6 @@
 module.exports = {
   setupFilesAfterEnv: ['./jest.setup.js'],
-  testPathIgnorePatterns : [
-    '<rootDir>/cypress/integration/'
-  ]
+  testPathIgnorePatterns: [
+    '<rootDir>/cypress/integration/',
+  ],
 };

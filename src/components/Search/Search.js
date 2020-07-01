@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
-import {searchMoviesStartAction} from '../../store/actions';
-import {useHistory, useParams} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import { searchMoviesStartAction } from '../../store/actions';
 
 const Search = () => {
-
   const dispatch = useDispatch();
   const history = useHistory();
-  let { searchQuery } = useParams();
+  const { searchQuery } = useParams();
 
   useEffect(() => {
     dispatch(searchMoviesStartAction(searchQuery));
@@ -61,7 +60,7 @@ const Search = () => {
 };
 
 Search.propTypes = {
-  search: PropTypes.func
+  search: PropTypes.func,
 };
 
 export default Search;

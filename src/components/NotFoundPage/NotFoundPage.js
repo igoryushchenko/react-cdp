@@ -1,7 +1,6 @@
 import React from 'react';
 
-const NotFoundPage = () => {
-  return (
+const NotFoundPage = () => (
       <div className="row">
         <div className="col-md-12">
           <div className="error-template">
@@ -13,7 +12,6 @@ const NotFoundPage = () => {
           </div>
         </div>
       </div>
-  );
-};
+);
 
 export default NotFoundPage;

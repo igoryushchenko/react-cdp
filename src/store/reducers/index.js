@@ -6,10 +6,10 @@ const defaultState = {
     data: [],
     total: 0,
     offset: 0,
-    limit: 0
+    limit: 0,
   },
   selectedMovie: {},
-  showMovieDetails: false
+  showMovieDetails: false,
 };
 
 const rootReducer = (state = defaultState, { type, payload }) => {
@@ -18,21 +18,21 @@ const rootReducer = (state = defaultState, { type, payload }) => {
       return {
         ...state,
         showMovieDetails: true,
-        selectedMovie: state.searchResults.data.find(m => m.id === payload.id)
-      }
+        selectedMovie: state.searchResults.data.find((m) => m.id === payload.id),
+      };
 
     case constants.HIDE_MOVIE_DETAILS:
       return {
         ...state,
         showMovieDetails: false,
-        selectedMovie: {}
-      }
+        selectedMovie: {},
+      };
 
     case constants.SEARCH_MOVIES_SUCCESS:
       return {
         ...state,
-        searchResults: payload.searchResults
-      }
+        searchResults: payload.searchResults,
+      };
 
     default:
       return state;
@@ -41,5 +41,5 @@ const rootReducer = (state = defaultState, { type, payload }) => {
 
 export {
   rootReducer,
-  defaultState
+  defaultState,
 };

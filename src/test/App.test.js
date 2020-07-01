@@ -1,12 +1,12 @@
 import React from 'react';
-import {mount} from 'enzyme';
-import App from '../App';
-import MovieResultEmpty from '../components/MovieResultEmpty/MovieResultEmpty';
-import MovieResultItem from "../components/MovieResultItem/MovieResultItem";
+import { mount } from 'enzyme';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {Provider} from 'react-redux';
-import { BrowserRouter } from "react-router-dom";
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import MovieResultItem from '../components/MovieResultItem/MovieResultItem';
+import MovieResultEmpty from '../components/MovieResultEmpty/MovieResultEmpty';
+import App from '../App';
 
 global.fetch = jest.fn(() => Promise.resolve());
 const mockStore = configureMockStore([thunk]);
@@ -28,9 +28,9 @@ const filledState = {
         revenue: 0,
         genres: [
           'Mystery',
-          'Thriller'
+          'Thriller',
         ],
-        runtime: 92
+        runtime: 92,
       },
       {
         id: 141052,
@@ -47,9 +47,9 @@ const filledState = {
           'Action',
           'Adventure',
           'Fantasy',
-          'Science Fiction'
+          'Science Fiction',
         ],
-        runtime: 120
+        runtime: 120,
       },
       {
         id: 268896,
@@ -66,33 +66,31 @@ const filledState = {
           'Action',
           'Fantasy',
           'Science Fiction',
-          'Adventure'
+          'Adventure',
         ],
-        runtime: 111
-      }
+        runtime: 111,
+      },
     ],
     total: 3,
     offset: 0,
-    limit: 0
+    limit: 0,
   },
   selectedMovie: {},
-  showMovieDetails: false
+  showMovieDetails: false,
 };
 
 describe('App component', () => {
-
   it('Should return empty component on empty search string', () => {
-
     const store = mockStore({
       searchString: '',
       searchResults: {
         data: [],
         total: 0,
         offset: 0,
-        limit: 0
+        limit: 0,
       },
       selectedMovie: {},
-      showMovieDetails: false
+      showMovieDetails: false,
     });
 
     const wrapper = mount(
@@ -101,7 +99,7 @@ describe('App component', () => {
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </Provider>
+      </Provider>,
     );
 
     // const wrapper = mount(<App />);
@@ -115,12 +113,11 @@ describe('App component', () => {
   });
 
   it('Should render movie components on non empty search string', () => {
-
     const store = mockStore({
       searchString: '',
       searchResults: filledState.searchResults,
       selectedMovie: {},
-      showMovieDetails: false
+      showMovieDetails: false,
     });
 
     const wrapper = mount(
@@ -128,17 +125,16 @@ describe('App component', () => {
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </Provider>
+      </Provider>,
     );
     const searchBtn = wrapper.find('#searchBtn');
     const searchInput = wrapper.find('#movieQuery');
 
     searchInput.simulate('change', {
-      target: { value: 'hello' }
-    })
+      target: { value: 'hello' },
+    });
     searchBtn.simulate('click');
 
     expect(wrapper.find(MovieResultItem)).toHaveLength(3);
-
   });
 });

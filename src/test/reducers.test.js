@@ -1,4 +1,4 @@
-import {rootReducer} from '../store/reducers';
+import { rootReducer } from '../store/reducers';
 import constants from '../shared/constants';
 
 const state = {
@@ -18,9 +18,9 @@ const state = {
         revenue: 0,
         genres: [
           'Mystery',
-          'Thriller'
+          'Thriller',
         ],
-        runtime: 92
+        runtime: 92,
       },
       {
         id: 141052,
@@ -37,9 +37,9 @@ const state = {
           'Action',
           'Adventure',
           'Fantasy',
-          'Science Fiction'
+          'Science Fiction',
         ],
-        runtime: 120
+        runtime: 120,
       },
       {
         id: 268896,
@@ -56,32 +56,31 @@ const state = {
           'Action',
           'Fantasy',
           'Science Fiction',
-          'Adventure'
+          'Adventure',
         ],
-        runtime: 111
-      }
+        runtime: 111,
+      },
     ],
     total: 3,
     offset: 0,
-    limit: 0
+    limit: 0,
   },
   selectedMovie: {},
-  showMovieDetails: false
+  showMovieDetails: false,
 };
 
 describe('root reducer', () => {
   it('should return the initial state', () => {
-
     const defaultState = {
       searchString: '',
       searchResults: {
         data: [],
         total: 0,
         offset: 0,
-        limit: 0
+        limit: 0,
       },
       selectedMovie: {},
-      showMovieDetails: false
+      showMovieDetails: false,
     };
 
     expect(rootReducer(undefined, {})).toEqual(defaultState);
@@ -92,8 +91,8 @@ describe('root reducer', () => {
     const action = {
       type: constants.SHOW_MOVIE_DETAILS,
       payload: {
-        id
-      }
+        id,
+      },
     };
 
     const result = rootReducer(state, action);
@@ -116,8 +115,8 @@ describe('root reducer', () => {
     const action = {
       type: constants.SEARCH_MOVIES_SUCCESS,
       payload: {
-        searchResults: state.searchResults
-      }
+        searchResults: state.searchResults,
+      },
     };
 
     const result = rootReducer(state, action);

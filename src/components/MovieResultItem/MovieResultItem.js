@@ -1,18 +1,20 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
-import {showMovieDetailsAction} from '../../store/actions';
-import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { showMovieDetailsAction } from '../../store/actions';
+import type { MovieProps } from '../../types/MovieProps';
 
-const MovieResultItem = ({ id, title, release_date, poster_path, genres }) => {
-
+const MovieResultItem = ({
+  id, title, release_date, poster_path, genres,
+}: MovieProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleMovieSelect = (id) => {
-    dispatch(showMovieDetailsAction(id));
-    history.push(`/film/${id}`);
-  }
+  const handleMovieSelect = (movieId) => {
+    dispatch(showMovieDetailsAction(movieId));
+    history.push(`/film/${movieId}`);
+  };
 
   return (
     <div id={id} className="card col-lg-4">
@@ -30,15 +32,6 @@ const MovieResultItem = ({ id, title, release_date, poster_path, genres }) => {
       </div>
     </div>
   );
-};
-
-MovieResultItem.propTypes = {
-  id: PropTypes.number,
-  title: PropTypes.string,
-  poster_path: PropTypes.string,
-  release_date: PropTypes.string,
-  genres: PropTypes.arrayOf(PropTypes.string),
-  handleMovieSelect: PropTypes.func
 };
 
 export default MovieResultItem;

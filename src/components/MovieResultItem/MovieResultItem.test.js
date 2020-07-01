@@ -1,10 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MovieResultItem from './MovieResultItem';
 import * as Redux from 'react-redux';
+import MovieResultItem from './MovieResultItem';
 
 describe('MovieResultItem component', () => {
-
   let movieData;
 
   beforeAll(() => {
@@ -23,15 +22,15 @@ describe('MovieResultItem component', () => {
         'Action',
         'Fantasy',
         'Science Fiction',
-        'Adventure'
+        'Adventure',
       ],
-      runtime: 111
+      runtime: 111,
     };
   });
 
   it('should be render correctly', () => {
     const useDispatchSpy = jest.spyOn(Redux, 'useDispatch');
-    useDispatchSpy.mockImplementation( () => (cb) => (cb));
+    useDispatchSpy.mockImplementation(() => (cb) => (cb));
     const component = shallow(<MovieResultItem key={movieData.id} {...movieData}/>);
 
     expect(component).toMatchSnapshot();
@@ -39,8 +38,7 @@ describe('MovieResultItem component', () => {
       <div className="card-title">
         <span className="h4">Pacific Rim: Uprising</span>
         <span className="border border-dark rounded float-right p-1">2018</span>
-      </div>
+      </div>,
     )).toBe(true);
   });
-
 });

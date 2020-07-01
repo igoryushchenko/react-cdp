@@ -1,21 +1,24 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FaSearch } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { hideMovieDetailsAction } from '../../store/actions';
-import {useHistory} from 'react-router-dom';
+import type { MovieProps } from '../../types/MovieProps';
 
-const MovieDetails = ({ title, poster_path, vote_average, tagline, release_date, overview, runtime }) => {
-
+const MovieDetails = ({
+  title, poster_path, vote_average, tagline, release_date, overview, runtime,
+}: MovieProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleSearchClick = () => {
     dispatch(hideMovieDetailsAction());
     history.push('/');
-  }
+  };
 
-    return (
+  return (
       <div className="card mb-3">
         <div className="row no-gutters">
           <div className="col-md-4">
@@ -35,7 +38,7 @@ const MovieDetails = ({ title, poster_path, vote_average, tagline, release_date,
           </div>
         </div>
       </div>
-    );
+  );
 };
 
 MovieDetails.propTypes = {
@@ -46,7 +49,7 @@ MovieDetails.propTypes = {
   release_date: PropTypes.string,
   overview: PropTypes.string,
   runtime: PropTypes.number,
-  setShowMovieDetails: PropTypes.func
-}
+  setShowMovieDetails: PropTypes.func,
+};
 
 export default MovieDetails;
