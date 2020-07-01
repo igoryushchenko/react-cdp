@@ -1,4 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { fromJS } from 'immutable';
 import { searchMoviesSuccessAction } from '../store/actions';
 import constants from '../shared/constants';
 
@@ -27,7 +28,7 @@ const getMoviesAsync = function* (action) {
   const url = `${baseUrl}?sortBy=${sortBy}&sortOrder=desc&search=${searchQuery}&searchBy=${searchBy}`;
   const response = yield call(fetch, url);
   const movies = yield response.json();
-  yield put(searchMoviesSuccessAction(movies));
+  yield put(searchMoviesSuccessAction(fromJS(movies)));
 };
 
 const watchGetMovies = function* () {

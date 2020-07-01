@@ -11,8 +11,8 @@ import MovieDetails from './components/MovieDetails/MovieDetails';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 const App = ({ Router, location, context }) => {
-  const searchResults = useSelector((state) => state.searchResults);
-  const currentMovie = useSelector((state) => state.selectedMovie);
+  const searchResults = useSelector((state) => state.get('searchResults'));
+  const currentMovie = useSelector((state) => state.get('selectedMovie'));
 
   return (
     <Router location={location} context={context}>

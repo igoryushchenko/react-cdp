@@ -14,7 +14,7 @@ const hideMovieDetailsAction = () => ({
 const searchMoviesSuccessAction = (searchResults) => ({
   type: constants.SEARCH_MOVIES_SUCCESS,
   payload: {
-    searchResults,
+    searchResults: searchResults.toJS(),
   },
 });
 

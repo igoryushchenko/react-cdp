@@ -12,6 +12,7 @@ const Rounded = styled.span`
   border-radius: 50%;
   border: 1px solid gray;
   padding: 6px;
+  line-height: 1;
 `;
 
 const MovieDetails = ({
